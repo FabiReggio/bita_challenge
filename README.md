@@ -1,6 +1,3 @@
-# bita_challenge
-Solutions of loading a big .csv file to a table in Postgres using Python
-
 # Bita Challenge 
 
 # 1. Objetivo del ejercicio
