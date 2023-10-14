@@ -12,10 +12,10 @@
 # 2. Estructura de las archivos
 
 - **README.md**: documentación general
-- **csv_to_sql_1.py**: solucion 1
-- **csv_to_sql_2.py**: solucion 2
-- **csv_to_sql_3.py**: solucion 3
-- **csv_to_sql_4.py**: solucion 4
+- **csv_to_sql_1.py**: solución 1
+- **csv_to_sql_2.py**: solución 2
+- **csv_to_sql_3.py**: solución 3
+- **csv_to_sql_4.py**: solución 4
 
 # 3. Explicacion de la Resolución
 
