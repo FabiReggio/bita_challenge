@@ -9,17 +9,14 @@
 - Aplicar buenas practicas de desarrollo y codigo bien escrito
 - Documentacion del ejercicio en un README.md
 
-# 2. Estructura de las carpetas 
+# 2. Estructura de las archivos
 
-La carpeta principal tiene el nombre **solucion_final** la cual tiene los siguientes archivos:
-
-- **Stock**: archivo .csv de entrada 
+- **README.md**: documentación general
 - **csv_to_sql_1.py**: solucion 1
 - **csv_to_sql_2.py**: solucion 2
 - **csv_to_sql_3.py**: solucion 3
 - **csv_to_sql_4.py**: solucion 4
-- **README.md**: documentación general de las soluciones
-    
+
 # 3. Explicacion de la Resolución
 
 1. En el archivo .csv se identificaron los registros que se van a considerar para insertar en la base de datos. El archivo originalmente tiene 17.175.295 registros, se aplico un filtro sobre el campo PointOfSale del archivo .csv considerando que los registros correctos son aquellos los cuales contienen el caracter "_" ya que aportan mas valor a los datos. Es decir, los diferentes valores para la primera columna, serian los siguientes:
