@@ -1,6 +1,6 @@
 '''
 
-Solucion 1 - Solucion sin utilizar pandas, aplicando filtro sobre csv original
+Solucion 1 - Solución sin utilizar pandas, aplicando filtro sobre csv original
 
 Librerias utilizadas:
 
@@ -65,7 +65,7 @@ with open(args.archivo_csv, 'r') as f:
 
     lote = []
     num_filas = 0
-    tamano_lote = 10000 # Número de filas por lote (esta valor se puede ajustar)
+    tamano_lote = 10000 # Número de filas por lote (Este valor se puede ajustar)
 
     for fila in reader:
         if "_" in fila[0]:  # Filtrar las filas cuyo primer campo contienen el carácter "_"
