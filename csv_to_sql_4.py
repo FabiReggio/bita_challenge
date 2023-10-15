@@ -1,11 +1,11 @@
 '''
 
-Solucion 4 - Solucion utilizando pandas (chunks) y psycopg2 (executemany) aplicando filtro sobre el archivo .csv (No se sobreescribe el .csv)
+Solución 4 - Solución utilizando pandas (chunks) y psycopg2 (executemany) aplicando filtro sobre el archivo .csv (No se sobreescribe el .csv)
 
 Librerias utilizadas:
 
 pandas:   Se utiliza para acceder al archivo .csv y leer ese archivo por lotes (chunks).
-psycopg2: Se utiliza para establecer la conexion con la BD en Postgres, crear la tabla e insertar registros en la misma (utilizando executemany)
+psycopg2: Se utiliza para establecer la conexión con la BD en Postgres, crear la tabla e insertar registros en la misma (utilizando executemany)
 time:     Se utiliza para medir el tiempo de ejecución. No es obligatorio utilizar esta libreria para objetivos del ejercicio.
 argparse: Se utiliza para generar una interfaz del programa con el usuario, pasando todos los argumentos de entrada que utilizara el programa.
 
