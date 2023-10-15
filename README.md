@@ -6,20 +6,20 @@
 - No usar la funcion COPY, ni ningun mecanismo de importacion masiva de PostgreSQL
 - Antes de insertar en la base de datos, eliminar contenido de una posible importacion anterior
 - Tomar en cuenta rendimiento y recursos
-- Aplicar buenas practicas de desarrollo y codigo bien escrito
-- Documentacion del ejercicio en un README.md
+- Aplicar buenas prácticas de desarrollo y codigo bien escrito
+- Documentación del ejercicio en un README.md
 
 # 2. Estructura de las archivos
 
-- **README.md**: documentación general
-- **csv_to_sql_1.py**: solución 1
-- **csv_to_sql_2.py**: solución 2
-- **csv_to_sql_3.py**: solución 3
-- **csv_to_sql_4.py**: solución 4
+- **README.md**: Documentación general
+- **csv_to_sql_1.py**: Solución 1
+- **csv_to_sql_2.py**: Solución 2
+- **csv_to_sql_3.py**: Solución 3
+- **csv_to_sql_4.py**: Solución 4
 
-# 3. Explicacion de la Resolución
+# 3. Explicación de la Resolución
 
-1. En el archivo .csv se identificaron los registros que se van a considerar para insertar en la base de datos. El archivo originalmente tiene 17.175.295 registros, se aplico un filtro sobre el campo PointOfSale del archivo .csv considerando que los registros correctos son aquellos los cuales contienen el caracter "_" ya que aportan mas valor a los datos. Es decir, los diferentes valores para la primera columna, serian los siguientes:
+1. En el archivo .csv se identificaron los registros que se van a considerar para insertar en la base de datos. El archivo originalmente tiene 17.175.295 registros, se aplicó un filtro sobre el campo PointOfSale del archivo .csv considerando que los registros correctos son aquellos los cuales contienen el caracter "_" ya que aportan más valor a los datos. Es decir, los diferentes valores para la primera columna, serían los siguientes:
 
 
      CDSB2C_P_SALE 
@@ -44,9 +44,9 @@
      PMA066_S_FULLPRICE
      PMA066_S_SALE
 
-2. Con el filtro aplicado previamente, el numero de registros totales a insertar en la tabla serian: 4.554.888 
+2. Con el filtro aplicado previamente, el número de registros totales a insertar en la tabla serían: 4.554.888 
 
-3. Para la solucion se hicieron diferentes pruebas utilizando diversas librerias de python para procesamiento de datos e insercion de los datos postgres como: `csv`, `psycopg2` y `pandas`. Adicionalmente para medir el tiempo de ejecucion de los scripts se utilizo la libreria: `time` y para crear una interfaz para el usuario que va a ejecutar el programa pasando todos los argumentos de entrada se utilizo la libreria `argparse`
+3. Para la solución se hicieron diferentes pruebas utilizando diversas librerías de python para procesamiento de datos e inserción de los datos postgres como: `csv`, `psycopg2` y `pandas`. Adicionalmente para medir el tiempo de ejecución de los scripts se utilizó la libreria: `time` y para crear una interfaz para el usuario que va a ejecutar el programa pasando todos los argumentos de entrada se utilizó la libreria `argparse`
 
 4. Se implementaron 4 soluciones, en donde a continuación se explicarán con mayor detalle.
 
@@ -54,28 +54,28 @@
 
  - **csv_to_sql_1.py**: En este script se implementó una solución utilizando las librerías (`csv`,`psycopg2`). 
     - `csv:`      Se utiliza para acceder y leer los datos del archivo .csv
-    - `psycopg2:` Se utiliza para establecer la conexion con la BD en Postgres, crear la tabla e insertar registros en la misma.
+    - `psycopg2:` Se utiliza para establecer la conexión con la BD en Postgres, crear la tabla e insertar registros en la misma.
     - **Explicación del código:** Se leen los datos del archivo original Stock.csv que tiene 17.175.295 registros y se aplica el filtro en el .csv antes de insertar los datos en una tabla para obtener los registros donde el primer campo del .csv PointOfSale contenga el carácter "_", insertando asi 4.554.888 de registros. El código lee el archivo CSV en lotes de tamaño configurable (en este caso se utilizó el tamano de lote 10000). Después, realiza inserciones en la base de datos utilizando el método `executemany()` de `psycopg2`, el cual permite insertar múltiples filas en una sola consulta. Esto es más eficiente que realizar una inserción por cada fila.
  
  - **csv_to_sql_2.py**: En este script se implementó una solución utilizando las librerías (`csv`,`psycopg2`).
     - `csv:`      Se utiliza para acceder y leer los datos del archivo .csv
-    - `psycopg2:` Se utiliza para establecer la conexion con la BD en Postgres, crear la tabla e insertar registros en la misma.
-    - **Explicación del código:**: La única diferencia de esta solución con la anterior es que en vez de filtrar en el .csv antes de insertar, se aplica el filtro en el archivo .csv y se sobreescribe ese archivo .csv teniendo 4.554.888 de registros y partir de ese archivo, se inserta en la base de datos de la misma forma que se explica anteriormente.
+    - `psycopg2:` Se utiliza para establecer la conexión con la BD en Postgres, crear la tabla e insertar registros en la misma.
+    - **Explicación del código:**: La única diferencia de esta solución con la anterior es que en vez de filtrar en el .csv antes de insertar, se aplica el filtro en el archivo .csv y se sobreescribe ese archivo .csv teniendo 4.554.888 de registros y partir de ese archivo, se inserta en la base de datos de la misma forma que se explicó en la solución anterior.
 
  - **csv_to_sql_3.py**: En este script se implementó una solución utilizando las librerías (`pandas`,`psycopg2`).
     - `pandas`:   Se utiliza para acceder al archivo .csv y leer ese archivo por lotes (chunks).
-    - `psycopg2`: Se utiliza para establecer la conexion con la BD en Postgres, crear la tabla e insertar registros en la misma.
-    - **Explicación del código**: Se leen los datos del archivo original Stock.csv utilizando la libreria de pandas y a la vez se lee el archivo por lotes (chunks), se aplica el filtro en el .csv para obtener los registros donde el primer campo del .csv PointOfSale contenga el carácter "_" y luego se va insertando en la tabla en lotes pequeños (batch_size = 1000). Finalmente, la tabla tendra los 4.554.888 de registros.
+    - `psycopg2`: Se utiliza para establecer la conexión con la BD en Postgres, crear la tabla e insertar registros en la misma.
+    - **Explicación del código**: Se leen los datos del archivo original Stock.csv utilizando la librería de pandas y a la vez se lee el archivo por lotes (chunks), se aplica el filtro en el .csv para obtener los registros donde el primer campo del .csv PointOfSale contenga el carácter "_" y luego se va insertando en la tabla en lotes pequeños (batch_size = 1000). Finalmente, la tabla tendrá los 4.554.888 de registros.
  
  - **csv_to_sql_4.py**: En este script se implementó una solución utilizando las librerías (`pandas`,`psycopg2`).
     - `pandas`: Se utiliza para acceder al archivo .csv y leer ese archivo por lotes (chunks).
     - `psycopg2`: Se utiliza para establecer la conexion con la BD en Postgres, crear la tabla e insertar registros en la misma (utilizando executemany).
-    - **Explicación del código**: El objetivo de esta solución es poder mezclar dos de las soluciones previas, usando la libreria de pandas para leer el archivo por lotes (chunks) y a la vez insertar en la base de datos utilizando el método `executemany()` de `psycopg2` , el cual permite insertar múltiples filas en una sola consulta. Igualmente a medida de que se itera sobre cada chunk, se aplica el filtro en el .csv para obtener los registros donde el primer campo del .csv PointOfSale contenga el carácter "_" y luego se va insertando en la tabla.
+    - **Explicación del código**: El objetivo de esta solución es poder mezclar dos de las soluciones previas, usando la librería de pandas para leer el archivo por lotes (chunks) y a la vez insertar en la base de datos utilizando el método `executemany()` de `psycopg2` , el cual permite insertar múltiples filas en una sola consulta. Igualmente a medida de que se itera sobre cada lote (chunk), se aplica el filtro en el .csv para obtener los registros donde el primer campo del .csv PointOfSale contenga el carácter "_" y luego se va insertando en la tabla.
 
 Adicionalmente en las 4 soluciones explicadas previamente se utilizaron las siguientes librerías de Python: 
 
 - `time:` Se utiliza para medir el tiempo de ejecución. Se utilizó para comparar los tiempos de ejecución en cada solución.  
-- `argparse:` Se utiliza para generar una interfaz del programa con el usuario final, pasando todos los argumentos de entrada que utilizará el programa. En la ultima sección se explica cómo ejecutar cada script. Los argumentos de entrada que debe proveer el usuario que va a ejecutar el código son:
+- `argparse:` Se utiliza para generar una interfaz del programa con el usuario final, pasando todos los argumentos de entrada que utilizará el programa. En la última sección se explica cómo ejecutar cada script. Los argumentos de entrada que debe proveer el usuario que va a ejecutar el código son:
 
     - **database**: Nombre de la base de datos
     - **user**: Nombre de usuario
@@ -98,13 +98,13 @@ Adicionalmente en las 4 soluciones explicadas previamente se utilizaron las sigu
  - **csv_to_sql_4.py**
      - Tiempo de ejecución: 1050.20 seg = 17.5min
 
-Es importante destacar que antes de llegar a estos scripts como soluciones finales, se implementaron varias corridas de prueba obteniendo el mismo resultado en promedio que el mostrado previamente. También se evaluó el rendimiento con diferentes tamanos de batches en cada script.
+Es importante destacar que antes de llegar a estos scripts como soluciones finales, se implementaron varias soluciones previas y ejecutaron corridas de prueba obteniendo el mismo resultado en promedio que el mostrado previamente. También se evaluó el rendimiento con diferentes tamanos de batches en cada script, concluyendo que el mejor rendimiento se obtuvo en el tamano de batch definido en cada script.
 
 # 6. Conclusiones
 
-En base a las soluciones presentadas previamente, los mejores tiempos de ejecucion fueron para los scripts: **csv_to_sql_1.py**, **csv_to_sql_2.py** y **csv_to_sql_4.py**
+En base a las soluciones presentadas previamente, los mejores tiempos de ejecución fueron para los scripts: **csv_to_sql_1.py**, **csv_to_sql_2.py** y **csv_to_sql_4.py**
 
-**csv_to_sql_1.py** me parece la mejor solución en comparación a **csv_to_sql_2.py** porque en el primer caso se aplican los filtros directamente en el archivo .csv sin necesidad de sobreescribirlo, conservando asi el archivo original. Además en esta solución se utiliza el método `executemany()` de `psycopg2`, el cual permite insertar múltiples filas en una sola consulta.
+**csv_to_sql_1.py** me parece la mejor solución en comparación a **csv_to_sql_2.py** porque en el primer caso se aplican los filtros directamente en el archivo .csv sin necesidad de sobreescribirlo, conservando así el archivo original. Además en esta solución se utiliza el método `executemany()` de `psycopg2`, el cual permite insertar múltiples filas en una sola consulta.
 
 **csv_to_sql_2.py** puede ser un poco más eficiente en los tiempos de ejecución, ya que no requiere leer y filtrar el archivo .csv en una operación separada. Sin embargo, existe un riesgo de perder los datos originales al sobreescribir el archivo .csv, si no se realiza una copia de seguridad adecuada. 
 
