@@ -1,6 +1,6 @@
 '''
 
-Solucion 2 - Solucion sin utilizar pandas, aplicando filtro y sobreescribiendo csv
+Solución 2 - Solución sin utilizar pandas, aplicando filtro y sobreescribiendo csv
 
 Librerias utilizadas:
 
