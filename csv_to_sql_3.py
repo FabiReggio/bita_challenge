@@ -62,7 +62,7 @@ cursor.execute(create_table_query)
 conn.commit()
 
 batch_size = 1000 #Tamano del batch
-low_memory=False  #Se utilizo esta condicion para mejorar el rendimiento del programa
+low_memory=False  #Se utilizó esta condición para mejorar el rendimiento del programa
 
 # Leer el archivo CSV utilizando Pandas en lotes
 for chunk in pd.read_csv(args.archivo_csv, delimiter=';', chunksize=batch_size): 
