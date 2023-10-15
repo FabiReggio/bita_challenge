@@ -1,6 +1,6 @@
 '''
 
-Solucion 3 - Solucion utilizando pandas y aplicando filtro sobre el archivo .csv (No se sobreescribe el .csv)
+Solución 3 - Solución utilizando pandas y aplicando filtro sobre el archivo .csv (No se sobreescribe el .csv)
 
 Librerias utilizadas:
 
